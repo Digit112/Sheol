@@ -1,0 +1,84 @@
+Sheol:
+	*The player wakes up in an infinite expanse. A stone floor is beneath them. Because the walls are infinitely distant, there is no echo.*
+
+	Sheol is no more to you than to a giant or an ant.
+	Sheol is no less to you than to a giant or an ant.
+
+	The others are here, all others who have died. They are not to be found by a finite being.
+	Perhaps by grace, worms from lost tribes may reunite...
+
+	That is all that is known to you.
+
+	*The player is left to wander for less than a minute. A beam of light appears for an instant, accompanied by the sound of an ophanim. The player speaks to the ophanim.*
+
+	The player speaks to the ophanim:
+		Ophanim: My appearance before you was careless.
+		Ophanim: ...
+		Ophanim: Do you seek knowledge? There can be none.
+		Ophanim: The passage of time is unknown to you, but the traces of your life have faded to nothing long ago.
+		Ophanim: ...
+		Ophanim: I will stop time for you. Do not move.
+
+		*The camera zooms in on the center of the ophanim, revealing that the wheels from which it is composed are nested recursively forever. Each lesser wheel spins faster than the one containing it, but time slows as the camera zooms to produce relatively consistent imagery. The video fades to white. The imagery is played in reverse.*
+	
+		=> Purgatorio
+
+Purgatorio:
+	*The player emerges to an infinite, grassy plain with hills.*
+	Ophanim: Purgatorio has received you. Do not reveal yourself to Him for my sake.
+
+	*The ophanim vanishes in a flash of light. The player is allowed to wander, revealing a castle in ruins behind them.*
+
+	The player enters the castle:
+		*Upon entering, the player discovers a trio of brothers. One is laid between the other two, but his torso is on fire. The other two hold out their hands to warm them on the flame.*
+		
+		The player speaks to the burning brother:
+			The burning brother: It was my turn to be the kindling.
+
+		The player speaks to either warm brother:
+			The first warm brother spoken to: Partake of the fire for warmth if you wish.
+			*The player is given the option to partake of the fire.*
+
+			The player speaks to the other warm brother:
+				The second warm brother spoken to: My brother was rude in omitting this: To partake of the fire is to agree to take a turn as its fuel.
+			
+			The player partakes of the fire:
+				The player sits by the fire with hands held up to it for warmth until the player moves.
+			
+				The first warm brother spoken to: Now that you have felt the fire's heat, you must take a turn as its fuel.
+				*The player is given the option to serve as fuel.*
+				
+				The player attempts to leave:
+					*The brothers overpower the player.*
+					=> Inferno
+				
+				The player chooses to serve as fuel:
+					=> Inferno
+
+Inferno:
+	*The screen is engulfed in flame. When the flame recedes, the player stands on an island of red rock, surrounded by lava.*
+	*The island has a central hill. At the foot of the hill is a block of stone.*
+	*A pig stands beside the player.*
+	*At the top of the hill is a temple. It is not particularly notable and the island is barren. It should be obvious that the pig and stone are the only interactable elements.*
+	
+	The player walks into the lava:
+		=> Inferno (progress is retained)
+	
+	The player speaks to the pig:
+		Temples at the tops of hills require stone. Stone is pushed by the disobediant.
+		Bring the stone to the temple.
+		*The pig cannot be spoken to again until the stone is pushed for 15 seconds total.*
+	
+	*The player may push the stone, which is a cube that will roll onto its next side. The camera's view is restricted. If the player moves the camera too far, they will stop pushing the stone, which will roll backwards once. This will revert it to its starting position, and it is revealed that the player has actually made no progress at all.*
+	
+	The player speaks to the pig after pushing the stone for 15 seconds total:
+		Something is off about you.
+		You have fealt the cleansing of purgatorio, yet its flame caused you to be sent here. I can smell it now.
+		Some reckless agent has removed you from your proper place, I bet.
+		It is of no concern to me. Your punishment is withheld.
+		
+		*The pig catches fire and continues to burn for several minutes, reducing it to ash. The player is free to move during this time.*
+		
+		The player can now move the stone and make progress. When it gets to the top of the hill, doorways on each side of the temple walls become portals to other temples. These temples form a portal-maze expanding throughout the inferno.
+		
+		

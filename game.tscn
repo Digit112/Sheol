@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://vnpgucupebm8"]
+
+[ext_resource type="Script" path="res://character_controller.gd" id="1_1o6v4"]
+[ext_resource type="Script" path="res://startup.gd" id="1_vrpj1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_b501p"]
+radial_segments = 16
+rings = 3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wvsvd"]
+radius = 0.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nmgye"]
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_vrpj1")
+player = NodePath("CharacterBody3D")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam", "tp_collider")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -30)
+script = ExtResource("1_1o6v4")
+interaction_range = 4.0
+cam = NodePath("Camera3D")
+tp_collider = NodePath("Camera3D/Teleport Collider")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_b501p")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="Teleport Collider" type="Area3D" parent="CharacterBody3D/Camera3D"]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Camera3D/Teleport Collider"]
+shape = SubResource("SphereShape3D_wvsvd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_nmgye")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.364475, 1.14057, -0.628376)
+omni_range = 10.0

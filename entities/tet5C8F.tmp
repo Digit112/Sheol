@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://drd41a06usthp"]
+
+[ext_resource type="Script" path="res://entities/tetra_intersect.gd" id="1_det1m"]
+[ext_resource type="PackedScene" uid="uid://dbbra7kt344fj" path="res://entities/tetra_intersect.glb" id="1_rm26p"]
+
+[node name="TetraIntersect" type="Node3D"]
+
+[node name="tetra_intersect" parent="." node_paths=PackedStringArray("mesh_inst") instance=ExtResource("1_rm26p")]
+script = ExtResource("1_det1m")
+mesh_inst = NodePath("bot")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422816, 1.27862)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.940632, -0.159713, 0.299505, 0, 0.882382, 0.470534, -0.339428, -0.4426, 0.829997, 0, 1.18022, 1.73473)
+
+[editable path="tetra_intersect"]

@@ -1,0 +1,49 @@
+~ ophanim_introduction
+
+if Dialogue.has_agreed_to_leave:
+	Be not afraid. The merkabah will carry you safely to your destination.
+	=> END
+elif Dialogue.has_met_ophanim:
+	=> ophanim_questions
+else:
+	You would approach me, wanderer?
+	You: I'm so tired...
+	An unfortunate fate.
+	You: I... I don't know how long I've been here...
+	It may have been only seconds, or it may have been centuries. There is no way to tell.
+	set Dialogue.has_met_ophanim = true
+	=> ophanim_questions
+
+~ ophanim_questions
+- What is this place?
+	Ophanim: Sheol, abode of the dead, where desperate wanderers such as yourself await salvation.
+	You: Sheol... I remember now...
+	You: I don't remember dying... I don't remember anything...
+	Ophanim: You never will, as long as you remain here.
+	=> ophanim_questions
+- What are you?
+	Ophanim: Ophanim. Driver of the merkabah, messenger angel...
+	Ophanim: I have many roles, and I am one of many.
+	=> ophanim_questions
+- Please, allow me to escape this place... I want to go home.
+	Ophanim: Your home? Resurrection is not my role.
+	You: There must be some way, please, I can't bear to walk any further!
+	Ophanim: Doubtful. There is a reason the wanderers are called as they are.
+	Ophanim: You are promised salvation, it has been written.
+	Ophanim: And when it is achieved, you will have no more memory of your time in Sheol than you do now.
+	Ophanim: You would sacrifice that?
+	- Please, I must go home...
+		Ophanim: ...
+		Ophanim: Perhaps the ends will justify the means.
+		Ophanim: The ends being my amusement, of course.
+		Ophanim: I will bring the merkabah to you.
+		Ophanim: You may see many of them, but they are all projections of the same thing.
+		Ophanim: Step into it. You will not be in Sheol any longer.
+		set Dialogue.has_agreed_to_leave = true
+		do Dialogue.spawn_merkabah()
+	- Nah.
+		Ophanim: Fair enough.
+		do Dialogue.ophanim_leave()
+		=> END
+
+=> END

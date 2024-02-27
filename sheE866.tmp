@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=3 uid="uid://c0hxi4jxdpmjo"]
+
+[ext_resource type="Texture2D" uid="uid://05o2sxlravid" path="res://textures/Brick_old_mixed_seamless.jpg" id="1_jk4ht"]
+[ext_resource type="PackedScene" uid="uid://drd41a06usthp" path="res://entities/merkabah.tscn" id="2_ut2go"]
+[ext_resource type="Texture2D" uid="uid://bmikb7wkso3bu" path="res://entities/desert.jpg" id="3_6dibw"]
+[ext_resource type="Script" path="res://character_controller.gd" id="4_b2ikf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4wts"]
+albedo_texture = ExtResource("1_jk4ht")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6h8q8"]
+lightmap_size_hint = Vector2i(22, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydujs"]
+size = Vector3(16, 1, 16)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_enlpp"]
+panorama = ExtResource("3_6dibw")
+
+[sub_resource type="Sky" id="Sky_glxf2"]
+sky_material = SubResource("PanoramaSkyMaterial_enlpp")
+
+[sub_resource type="Environment" id="Environment_81r3q"]
+background_mode = 2
+sky = SubResource("Sky_glxf2")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bllkf"]
+radial_segments = 16
+rings = 3
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.9565, 0, 0, 0, 0.747839, 0, 0, 0, 3.9565, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_f4wts")
+mesh = SubResource("PlaneMesh_6h8q8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ydujs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.859505, 0.511128, 0, -0.511128, 0.859505, 0, 0.947596, 1.75445)
+
+[node name="Merkabah" parent="." instance=ExtResource("2_ut2go")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_81r3q")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.53531)
+script = ExtResource("4_b2ikf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_bllkf")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)

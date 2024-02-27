@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dchr3gryyaj0c"
+path="res://.godot/imported/ophanim_introduction.dialogue-2c56e18e42eb92e9af091a474649c4c1.tres"
+
+[deps]
+
+source_file="res://dialogue/ophanim_introduction.dialogue"
+dest_files=["res://.godot/imported/ophanim_introduction.dialogue-2c56e18e42eb92e9af091a474649c4c1.tres"]
+
+[params]
+
+defaults=true

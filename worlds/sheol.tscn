@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0hxi4jxdpmjo"]
+
+[ext_resource type="Script" path="res://worlds/sheol.gd" id="1_8e57g"]
+[ext_resource type="PackedScene" uid="uid://c4i32wn026x26" path="res://meshes/sheol_ground/sheol_ground.glb" id="2_xqxu6"]
+[ext_resource type="PackedScene" uid="uid://drd41a06usthp" path="res://entities/merkabah/merkabah.tscn" id="3_qfdet"]
+[ext_resource type="Script" path="res://entities/ophanim/sheol_ophanim.gd" id="5_8e8g0"]
+[ext_resource type="PackedScene" uid="uid://b5q0t02mko1d4" path="res://entities/ophanim/ophanim.tscn" id="8_5s5db"]
+
+[sub_resource type="Environment" id="Environment_81r3q"]
+background_mode = 2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.2
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_anisotropy = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydujs"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xj730"]
+radius = 2.09782
+
+[node name="Sheol" type="Node3D"]
+script = ExtResource("1_8e57g")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_81r3q")
+
+[node name="sheol_ground" parent="." instance=ExtResource("2_xqxu6")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="sheol_ground"]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sheol_ground/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_ydujs")
+
+[node name="Merkabah" parent="." instance=ExtResource("3_qfdet")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 80)
+unique_name = "Sheol_A"
+dest_merkabah = "Purgatorio_A"
+dest_world_res_path = "res://worlds/purgatorio.tscn"
+
+[node name="Ophanim" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("8_5s5db")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("5_8e8g0")
+collider = NodePath("Interactable")
+
+[node name="Interactable" type="StaticBody3D" parent="Ophanim"]
+collision_layer = 65
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ophanim/Interactable"]
+shape = SubResource("SphereShape3D_xj730")
