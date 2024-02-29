@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://vnpgucupebm8"]
+[gd_scene load_steps=7 format=3 uid="uid://vnpgucupebm8"]
 
 [ext_resource type="Script" path="res://character_controller.gd" id="1_1o6v4"]
 [ext_resource type="Script" path="res://startup.gd" id="1_vrpj1"]
+[ext_resource type="Script" path="res://Console.gd" id="2_vpiee"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b501p"]
 radial_segments = 16
@@ -12,9 +13,30 @@ radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nmgye"]
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "console")]
 script = ExtResource("1_vrpj1")
 player = NodePath("CharacterBody3D")
+console = NodePath("Control/Console")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Console" type="LineEdit" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_vpiee")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam", "tp_collider")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -30)
@@ -45,3 +67,5 @@ shape = SubResource("CapsuleShape3D_nmgye")
 [node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.364475, 1.14057, -0.628376)
 omni_range = 10.0
+
+[connection signal="text_submitted" from="Control/Console" to="Control/Console" method="_on_text_submitted"]

@@ -2,6 +2,10 @@ extends Node3D
 
 @export var player : CharacterBody3D
 
+@export var console : LineEdit
+
+var expression = Expression.new()
+
 func _enter_tree():
 	Worlds.player = player
 	Worlds.game = self
@@ -29,3 +33,12 @@ func end_dialogue(_resource : DialogueResource):
 	Worlds.player.set_process(true)
 	Worlds.player.set_physics_process(true)
 	Worlds.player.set_process_input(true)
+
+func _input(event):
+	if event is InputEventKey:
+		if event.keycode == KEY_ESCAPE and event.pressed:
+			console.visible = not console.visible
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
